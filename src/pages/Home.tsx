@@ -1,9 +1,7 @@
-import React from 'react';
+import HeroBanner from '../components/home/HeroBanner';
 
-type Props = {};
-
-const Home = (props: Props) => {
-  return <div>Home</div>;
+const Home = () => {
+  return <HeroBanner />;
 };
 
 export default Home;
