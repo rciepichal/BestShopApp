@@ -11,12 +11,13 @@ const AboutSection = () => {
     >
       <Box
         sx={{
-          width: '50%',
+          width: { xs: '80%', md: '50%' },
           textAlign: 'justify',
+          // backgroundColor: { xs: 'blue', sm: 'red', md: 'yellow' },
         }}
       >
-        <Typography variant="body1">
-          <Typography display="inline" variant="h4">
+        <Typography component="h3" variant="body1">
+          <Typography display="inline" component="span" variant="h4">
             L
           </Typography>
           orem ipsum dolor sit amet consectetur adipisicing elit. Neque, tenetur

@@ -41,7 +41,7 @@ const HeroBanner = (props: Props) => {
           <Box
             sx={{
               position: 'relative',
-              p: { xs: 3, md: 6 },
+              p: { xs: 0, md: 6 },
               textAlign: 'center',
             }}
           >
