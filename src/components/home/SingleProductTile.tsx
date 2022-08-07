@@ -23,7 +23,7 @@ const badgeStyle = {
 };
 
 const SingleProductTile = ({ product, isOnSale }: Props) => {
-  const { title, image, price, description } = product;
+  const { id, title, image, description } = product;
 
   return (
     <Card sx={{ maxWidth: 300 }} elevation={5}>
@@ -33,13 +33,13 @@ const SingleProductTile = ({ product, isOnSale }: Props) => {
         invisible={!isOnSale}
         sx={badgeStyle}
       >
-        <CardActionArea href="/">
+        <CardActionArea href={`/products/${id}`}>
           <CardMedia
             component="img"
             height="140"
             image={image}
             alt={title}
-            sx={{ objectFit: 'contain' }}
+            sx={{ objectFit: 'contain', paddingTop: 2 }}
           />
           <CardContent>
             <Typography
@@ -50,13 +50,13 @@ const SingleProductTile = ({ product, isOnSale }: Props) => {
             >
               {title}
             </Typography>
-            <Typography
+            {/* <Typography
               variant="body2"
               color="text.secondary"
               sx={{ textAlign: 'center' }}
             >
               {description}
-            </Typography>
+            </Typography> */}
           </CardContent>
         </CardActionArea>
       </Badge>
