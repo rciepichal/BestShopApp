@@ -12,8 +12,8 @@ type Props = { product: Product; isOnSale: boolean };
 
 const badgeStyle = {
   '& .MuiBadge-badge': {
-    right: '25px',
-    top: '25px',
+    right: '23px',
+    top: '23px',
     borderRadius: '0',
     height: '50px',
     width: '50px',
@@ -23,10 +23,15 @@ const badgeStyle = {
 };
 
 const SingleProductTile = ({ product, isOnSale }: Props) => {
-  const { id, title, image, description } = product;
+  const { id, title, image } = product;
 
   return (
-    <Card sx={{ maxWidth: 300 }} elevation={5}>
+    <Card
+      sx={{
+        maxWidth: { xs: 250 },
+      }}
+      elevation={5}
+    >
       <Badge
         color="primary"
         badgeContent={''}
@@ -36,7 +41,7 @@ const SingleProductTile = ({ product, isOnSale }: Props) => {
         <CardActionArea href={`/products/${id}`}>
           <CardMedia
             component="img"
-            height="140"
+            height="130"
             image={image}
             alt={title}
             sx={{ objectFit: 'contain', paddingTop: 2 }}
