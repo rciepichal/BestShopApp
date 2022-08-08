@@ -1,9 +1,11 @@
-import React from 'react';
+import { Box, Typography } from '@mui/material';
 
-type Props = {};
-
-const Error = (props: Props) => {
-  return <div>Error</div>;
+const Error = () => {
+  return (
+    <Box>
+      <Typography>Error 404</Typography>
+    </Box>
+  );
 };
 
 export default Error;
