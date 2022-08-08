@@ -16,6 +16,7 @@ const HeroBanner = (props: Props) => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundImage: `url(${imgUrl})`,
+        backgroundAttachment: 'fixed',
         height: '100vh',
       }}
     >

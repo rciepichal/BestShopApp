@@ -53,6 +53,7 @@ const NewestProducts = (props: Props) => {
       <Box
         sx={{
           display: 'flex',
+          flexFlow: { xs: 'column', md: 'row' },
           justifyContent: 'space-around',
           alignItems: 'center',
           p: 5,
