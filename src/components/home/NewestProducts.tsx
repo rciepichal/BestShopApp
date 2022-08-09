@@ -40,7 +40,7 @@ const NewestProducts = (props: Props) => {
           flexFlow: { xs: 'column', md: 'row' },
           justifyContent: 'space-around',
           alignItems: 'center',
-          p: 5,
+          p: 2,
           width: '60%',
         }}
       >
