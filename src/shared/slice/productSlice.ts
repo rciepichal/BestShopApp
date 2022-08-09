@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../models';
 import axios from 'axios';
+import { stat } from 'fs';
 
-const urlNewestItems = 'https://fakestoreapi.com/products?limit=2';
+const urlItemsCount = 'https://fakestoreapi.com/products?limit=';
 
 type InitialState = {
   newestProducts: Product[];
@@ -16,10 +17,10 @@ const initialState: InitialState = {
   isLoading: true,
 };
 
-export const getNewestProducts = createAsyncThunk(
+export const getProductsCount = createAsyncThunk(
   'product/getNewestProducts',
-  async () => {
-    const resp = await axios(urlNewestItems);
+  async (num: number) => {
+    const resp = await axios(`${urlItemsCount}${num}`);
     return resp.data;
   }
 );
@@ -30,11 +31,11 @@ const productSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getNewestProducts.pending, (state) => {
+      .addCase(getProductsCount.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getNewestProducts.fulfilled, (state, action) => {
-        state.isLoading = true;
+      .addCase(getProductsCount.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.newestProducts = action.payload;
       });
   },
