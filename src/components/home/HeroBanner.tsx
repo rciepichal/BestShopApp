@@ -19,6 +19,7 @@ const HeroBanner = (props: Props) => {
         backgroundAttachment: 'fixed',
         height: '100vh',
       }}
+      elevation={5}
     >
       {/* Increase the priority of the hero background image */}
       {<img style={{ display: 'none' }} src={imgUrl} alt="" />}
@@ -55,11 +56,10 @@ const HeroBanner = (props: Props) => {
               Welcome to BestShop!
             </Typography>
             <Typography variant="h6" color="inherit" paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam, odit.
+              Literally the best shop in the internet!
             </Typography>
             <Button variant="contained" size="large">
-              Go to products...
+              Go to products
             </Button>
           </Box>
         </Grid>
