@@ -15,7 +15,7 @@ const NewestProducts = (props: Props) => {
   // console.log(products);
 
   useEffect(() => {
-    dispatch(getNewestProducts());
+    dispatch(getNewestProducts(2));
     console.log(isLoading);
   }, []);
 
@@ -32,7 +32,7 @@ const NewestProducts = (props: Props) => {
       }}
     >
       <Typography component="h2" variant="h4" gutterBottom color={'primary'}>
-        Hot picks!
+        Newest products
       </Typography>
       <Box
         sx={{
@@ -40,7 +40,7 @@ const NewestProducts = (props: Props) => {
           flexFlow: { xs: 'column', md: 'row' },
           justifyContent: 'space-around',
           alignItems: 'center',
-          p: 5,
+          p: 2,
           width: '60%',
         }}
       >

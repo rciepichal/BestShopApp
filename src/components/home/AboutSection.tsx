@@ -13,30 +13,20 @@ const AboutSection = () => {
         sx={{
           width: { xs: '80%', md: '50%' },
           textAlign: 'justify',
-          // backgroundColor: { xs: 'blue', sm: 'red', md: 'yellow' },
         }}
       >
-        <Typography component="h3" variant="body1">
+        <Typography component="h3" variant="body2">
           <Typography display="inline" component="span" variant="h4">
-            L
+            K
           </Typography>
-          orem ipsum dolor sit amet consectetur adipisicing elit. Neque, tenetur
-          quo. Corporis velit qui nesciunt repellat minima in, maxime
-          consequuntur quibusdam porro dolores eveniet incidunt aliquam ipsa ut
-          voluptas at iusto reprehenderit sed quod quisquam omnis architecto
-          quos! Repellendus harum adipisci qui omnis id hic esse possimus ad
-          quidem alias. Qui unde, iure tempora necessitatibus ut, at doloribus
-          accusantium ea ducimus magnam, amet optio laboriosam velit illo
-          numquam a atque dicta modi. Molestiae doloremque temporibus sequi
-          tempore aperiam fugit sint. Velit ipsa minima dolores, deleniti
-          explicabo molestiae repellendus eligendi dolorum placeat quidem ullam
-          maxime doloribus cum aliquam excepturi cupiditate culpa quod ducimus
-          dolor corrupti, maiores dolore? Ratione enim error dolorum deleniti
-          tempore praesentium quis alias laudantium aliquam sint sed consequatur
-          magnam, distinctio minima, consequuntur quam! Nobis laudantium culpa
-          repellendus tenetur debitis ullam nisi vel velit iure, nam, autem
-          nostrum, voluptatum repellat quo quas aut cum earum harum. Atque,
-          temporibus dolor.
+          itsch wayfarers mixtape kinfolk poutine irony tofu snackwave deep v
+          bruh hoodie salvia mollit kickstarter. Swag yuccie kogi listicle non
+          8-bit tbh DSA organic. DIY eiusmod mixtape laborum consequat ramps art
+          party vibecession hashtag. Duis enim umami deserunt ascot, distillery
+          quis readymade freegan hell of food truck fixie bruh master cleanse.
+          Crucifix bushwick quinoa selfies praxis, normcore church-key.
+          Williamsburg listicle anim hell of dolore taxidermy poke authentic
+          narwhal praxis ramps roof party truffaut.
         </Typography>
       </Box>
     </Box>
