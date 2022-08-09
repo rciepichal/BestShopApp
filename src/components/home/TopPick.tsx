@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Product } from '../../shared/models';
+import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
 import SingleProductTile from './SingleProductTile';
 import CloseIcon from '@mui/icons-material/Close';
-
-type Props = {};
+import { getTopPick } from '../../shared/slice/productSlice';
 
 const testProduct: Product = {
   id: 1,
@@ -20,13 +20,19 @@ const testProduct: Product = {
   },
 };
 
-const TopPick = (props: Props) => {
+const TopPick = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const { topPick } = useAppSelector((store) => store.product);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getTopPick());
+  }, []);
 
   return (
     <Box
       sx={{
-        backgroundColor: 'red',
+        backgroundColor: '#D40000',
         p: 2,
         position: 'fixed',
         bottom: '0',
@@ -46,7 +52,7 @@ const TopPick = (props: Props) => {
           onClick={() => setIsOpen(false)}
           sx={{ position: 'absolute', top: 0, right: 0, cursor: 'pointer' }}
         />
-        <SingleProductTile product={testProduct} isOnSale={false} />
+        <SingleProductTile product={topPick} isOnSale={false} />
       </Box>
     </Box>
   );

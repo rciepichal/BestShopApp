@@ -2,7 +2,7 @@ import { Box, Paper, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
 import { Product } from '../../shared/models';
-import { getProductsCount } from '../../shared/slice/productSlice';
+import { getNewestProducts } from '../../shared/slice/productSlice';
 import SingleProductTile from './SingleProductTile';
 
 type Props = {};
@@ -15,7 +15,7 @@ const NewestProducts = (props: Props) => {
   // console.log(products);
 
   useEffect(() => {
-    dispatch(getProductsCount(2));
+    dispatch(getNewestProducts(2));
     console.log(isLoading);
   }, []);
 
