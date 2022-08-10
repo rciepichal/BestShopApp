@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './navbar.scss';
 
 const pages = ['Home', 'Products', 'Contact'];
@@ -33,16 +34,17 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <Toolbar>
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="a"
-            href="/"
+            href=""
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -53,7 +55,7 @@ const ResponsiveAppBar = () => {
             BestShop
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -90,44 +92,57 @@ const ResponsiveAppBar = () => {
             </Menu>
           </Box>
           {/* Desktop */}
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
+          <Container
             sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            BestShop
-          </Typography>
-          <Box
-            sx={{
-              flexGrow: 1,
               display: { xs: 'none', md: 'flex' },
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              m: 0,
             }}
           >
-            {pages.map((page) => (
-              <NavLink
-                key={page}
-                onClick={handleCloseNavMenu}
-                to={`${page === 'Home' ? '/' : page}`}
-                className={({ isActive }) =>
-                  isActive ? 'nav-link active' : 'nav-link'
-                }
-              >
-                {page}
-              </NavLink>
-            ))}
-          </Box>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              BestShop
+            </Typography>
+
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: 'none', md: 'flex' },
+                maxWidth: '21rem',
+              }}
+            >
+              {pages.map((page) => (
+                <NavLink
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  to={`${page === 'Home' ? '/' : page}`}
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link active' : 'nav-link'
+                  }
+                >
+                  {page}
+                </NavLink>
+              ))}
+            </Box>
+            <Box>
+              <ShoppingCartIcon sx={{ fontSize: '2rem' }} />
+            </Box>
+          </Container>
         </Toolbar>
       </Container>
     </AppBar>
