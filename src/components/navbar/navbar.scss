@@ -1,0 +1,36 @@
+@mixin before-and-after {
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  bottom: -20%;
+  position: absolute;
+  transition: width 0.3s linear;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 2rem;
+  position: relative;
+  transition: transform 0.2s linear;
+  &::before {
+    @include before-and-after();
+    right: 50%;
+  }
+  &::after {
+    @include before-and-after();
+    left: 50%;
+  }
+  &:hover {
+    transform: scale(1.1);
+    &::before,
+    &::after {
+      width: 20%;
+    }
+  }
+}
+
+.active {
+  transform: scale(1.1);
+}

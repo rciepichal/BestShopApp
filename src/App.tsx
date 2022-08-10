@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import Cart from './pages/Cart';
 import Error from './pages/Error';
 import Home from './pages/Home';
