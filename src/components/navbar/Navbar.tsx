@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   AppBar,
   Box,
@@ -15,13 +14,12 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink, useLocation } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './navbar.scss';
+import { useState } from 'react';
 
 const pages = ['Home', 'Products', 'Contact'];
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const { pathname } = useLocation();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -59,16 +57,14 @@ const ResponsiveAppBar = () => {
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
+              aria-controls="mobile-menu"
               onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
+              id="mobile-menu"
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
@@ -77,7 +73,7 @@ const ResponsiveAppBar = () => {
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left',
+                horizontal: 'center',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
@@ -87,7 +83,18 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <NavLink
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    to={`${page === 'Home' ? '/' : page}`}
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'nav-link-mobile active-mobile'
+                        : 'nav-link-mobile'
+                    }
+                  >
+                    {page}
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>

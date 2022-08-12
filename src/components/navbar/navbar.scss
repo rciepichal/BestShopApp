@@ -17,3 +17,22 @@
   color: #000;
   background-color: #ffd700;
 }
+
+.MuiMenu-paper {
+  width: 100%;
+  // .MuiMenu-list {
+  //   display: flex;
+  //   justify-content: space-around;
+  //   padding: 0;
+  // }
+}
+
+.nav-link-mobile {
+  text-decoration: none;
+  color: #000;
+}
+
+.active-mobile {
+  color: #d40000;
+  font-weight: bold;
+}
