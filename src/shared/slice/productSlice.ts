@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../models';
 import axios from 'axios';
-import { stat } from 'fs';
 
 const urlItemsCount = 'https://fakestoreapi.com/products?limit=';
 

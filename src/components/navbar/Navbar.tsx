@@ -81,22 +81,38 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <NavLink
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    to={`${page === 'Home' ? '/' : page}`}
-                    className={({ isActive }) =>
-                      isActive
-                        ? 'nav-link-mobile active-mobile'
-                        : 'nav-link-mobile'
-                    }
-                  >
-                    {page}
-                  </NavLink>
-                </MenuItem>
-              ))}
+              <Box sx={{ p: 1, textAlign: 'center' }}>
+                <NavLink
+                  to="cart"
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link-mobile' : 'nav-link-mobile'
+                  }
+                  onClick={handleCloseNavMenu}
+                >
+                  <Badge badgeContent={0} color="primary" showZero>
+                    <ShoppingCartIcon sx={{ fontSize: '2rem' }} />
+                  </Badge>
+                </NavLink>
+              </Box>
+
+              <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <NavLink
+                      key={page}
+                      onClick={handleCloseNavMenu}
+                      to={`${page === 'Home' ? '/' : page}`}
+                      className={({ isActive }) =>
+                        isActive
+                          ? 'nav-link-mobile active-mobile'
+                          : 'nav-link-mobile'
+                      }
+                    >
+                      {page}
+                    </NavLink>
+                  </MenuItem>
+                ))}
+              </Box>
             </Menu>
           </Box>
           {/* Desktop */}
