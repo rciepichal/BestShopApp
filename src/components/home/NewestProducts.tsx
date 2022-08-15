@@ -16,7 +16,6 @@ const NewestProducts = (props: Props) => {
 
   useEffect(() => {
     dispatch(getNewestProducts(2));
-    console.log(isLoading);
   }, []);
 
   return (

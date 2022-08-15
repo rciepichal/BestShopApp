@@ -8,8 +8,9 @@ import {
   Box,
 } from '@mui/material';
 import { Product } from '../../shared/models';
+import CategoryBadge from '../products/CategoryBadge';
 
-type Props = { product: Product; isOnSale: boolean };
+type Props = { product: Product; isOnSale: boolean; isProductPage?: boolean };
 
 const badgeStyle = {
   '& .MuiBadge-badge': {
@@ -23,17 +24,71 @@ const badgeStyle = {
   },
 };
 
-const SingleProductTile = ({ product, isOnSale }: Props) => {
-  const { id, title, image } = product;
+const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
+  const { id, title, image, price, description, category } = product;
 
   return (
-    <Box sx={{ paddingTop: { xs: 3 } }}>
+    <Box sx={{ paddingTop: { xs: 3 }, maxHeight: '17rem' }}>
       <Card
         sx={{
           maxWidth: { xs: 300, md: 250, lg: 300 },
+          position: 'relative',
         }}
         elevation={5}
       >
+        {isProductPage &&
+          (isOnSale ? (
+            <div>
+              <Typography
+                gutterBottom
+                variant="body2"
+                component="span"
+                sx={{
+                  textAlign: 'center',
+                  fontSize: { xs: '0.9rem', lg: '1.1rem' },
+                  position: 'absolute',
+                  bottom: '60%',
+                  right: '10%',
+                  textDecoration: 'line-through',
+                }}
+              >
+                ${price}
+              </Typography>
+              <Typography
+                gutterBottom
+                variant="body2"
+                component="span"
+                color="primary"
+                sx={{
+                  textAlign: 'center',
+                  fontSize: { xs: '1.1rem', lg: '1.3rem' },
+                  position: 'absolute',
+                  bottom: '50%',
+                  right: '10%',
+                }}
+              >
+                ${Math.ceil(price - price * 0.15)}
+              </Typography>
+            </div>
+          ) : (
+            <Typography
+              gutterBottom
+              variant="body2"
+              component="span"
+              sx={{
+                textAlign: 'center',
+                fontSize: { xs: '1rem', lg: '1.2rem' },
+                position: 'absolute',
+                bottom: '60%',
+                right: '10%',
+                zIndex: 3,
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              }}
+            >
+              ${!price ? 'Contact us' : price}
+            </Typography>
+          ))}
+        {isProductPage && <CategoryBadge category={category}></CategoryBadge>}
         <Badge
           color="primary"
           badgeContent={''}
@@ -47,26 +102,32 @@ const SingleProductTile = ({ product, isOnSale }: Props) => {
               image={image}
               alt={title}
               sx={{ objectFit: 'contain', paddingTop: 2 }}
-            />
+            ></CardMedia>
+
             <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="h6"
-                sx={{
-                  textAlign: 'center',
-                  fontSize: { xs: '1rem', lg: '1.2rem' },
-                }}
-              >
-                {title}
-              </Typography>
-              {/* <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ textAlign: 'center' }}
-            >
-              {description}
-            </Typography> */}
+              <Box>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="h6"
+                  sx={{
+                    textAlign: 'center',
+                    fontSize: { xs: '1rem', lg: '1.2rem' },
+                    marginTop: isProductPage ? '0.7rem' : '0',
+                  }}
+                >
+                  {isProductPage ? title.substring(0, 20) : title}
+                </Typography>
+              </Box>
+              {isProductPage && (
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ textAlign: 'center' }}
+                >
+                  {description.substring(0, 90)}...
+                </Typography>
+              )}
             </CardContent>
           </CardActionArea>
         </Badge>

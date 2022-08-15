@@ -3,6 +3,7 @@ import { Product } from '../models';
 import axios from 'axios';
 
 const urlItemsCount = 'https://fakestoreapi.com/products?limit=';
+const urlAllItems = 'https://fakestoreapi.com/products';
 
 type InitialState = {
   newestProducts: Product[];
@@ -45,6 +46,15 @@ export const getTopPick = createAsyncThunk('product/getTopPick', async () => {
   return topPick;
 });
 
+export const getAllProducts = createAsyncThunk(
+  'product/getAllProducts',
+  async () => {
+    const resp = await axios(urlAllItems);
+    const products: Product[] = resp.data;
+    return products;
+  }
+);
+
 const productSlice = createSlice({
   name: 'products',
   initialState,
@@ -58,8 +68,17 @@ const productSlice = createSlice({
         state.isLoading = false;
         state.newestProducts = action.payload;
       })
+      .addCase(getTopPick.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(getTopPick.fulfilled, (state, action) => {
         state.topPick = action.payload;
+      })
+      .addCase(getAllProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllProducts.fulfilled, (state, action) => {
+        state.products = action.payload;
       });
   },
 });
