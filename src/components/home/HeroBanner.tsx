@@ -49,7 +49,7 @@ const HeroBanner = (props: Props) => {
           >
             <Typography
               component="h1"
-              variant="h2"
+              variant="h3"
               color="inherit"
               gutterBottom
             >

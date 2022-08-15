@@ -16,7 +16,12 @@ const AboutSection = () => {
         }}
       >
         <Typography component="h3" variant="body2">
-          <Typography display="inline" component="span" variant="h4">
+          <Typography
+            display="inline"
+            component="span"
+            variant="h4"
+            sx={{ lineHeight: 0.9 }}
+          >
             K
           </Typography>
           itsch wayfarers mixtape kinfolk poutine irony tofu snackwave deep v
