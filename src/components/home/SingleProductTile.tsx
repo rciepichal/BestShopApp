@@ -50,6 +50,7 @@ const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
                   bottom: '60%',
                   right: '10%',
                   textDecoration: 'line-through',
+                  userSelect: 'none',
                 }}
               >
                 ${price}
@@ -65,6 +66,7 @@ const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
                   position: 'absolute',
                   bottom: '50%',
                   right: '10%',
+                  userSelect: 'none',
                 }}
               >
                 ${Math.ceil(price - price * 0.15)}

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../models';
 import axios from 'axios';
+import paginate from '../hooks/paginate';
 
 const urlItemsCount = 'https://fakestoreapi.com/products?limit=';
 const urlAllItems = 'https://fakestoreapi.com/products';
@@ -8,7 +9,7 @@ const urlAllItems = 'https://fakestoreapi.com/products';
 type InitialState = {
   newestProducts: Product[];
   topPick: Product;
-  products: Product[];
+  products: Product[][];
   isLoading: boolean;
 };
 
@@ -50,7 +51,8 @@ export const getAllProducts = createAsyncThunk(
   'product/getAllProducts',
   async () => {
     const resp = await axios(urlAllItems);
-    const products: Product[] = resp.data;
+    const data: Product[] = resp.data;
+    const products = paginate(data);
     return products;
   }
 );
@@ -65,20 +67,22 @@ const productSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getNewestProducts.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.newestProducts = action.payload;
+        state.isLoading = false;
       })
       .addCase(getTopPick.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getTopPick.fulfilled, (state, action) => {
         state.topPick = action.payload;
+        state.isLoading = false;
       })
       .addCase(getAllProducts.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.isLoading = false;
       });
   },
 });
