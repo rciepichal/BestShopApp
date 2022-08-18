@@ -28,10 +28,15 @@ const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
   const { id, title, image, price, description, category } = product;
 
   return (
-    <Box sx={{ paddingTop: { xs: 3 }, maxHeight: '17rem' }}>
+    <Box
+      sx={{
+        paddingTop: { xs: 3 },
+        transform: { xs: `${isProductPage ? 'scale(0.8)' : ''}` },
+      }}
+    >
       <Card
         sx={{
-          maxWidth: { xs: 300, md: 250, lg: 300 },
+          width: { xs: 250, md: 250, lg: 300 },
           position: 'relative',
         }}
         elevation={5}

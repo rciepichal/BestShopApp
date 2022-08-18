@@ -67,15 +67,15 @@ const productSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getNewestProducts.fulfilled, (state, action) => {
-        state.newestProducts = action.payload;
         state.isLoading = false;
+        state.newestProducts = action.payload;
       })
       .addCase(getTopPick.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getTopPick.fulfilled, (state, action) => {
-        state.topPick = action.payload;
         state.isLoading = false;
+        state.topPick = action.payload;
       })
       .addCase(getAllProducts.pending, (state) => {
         state.isLoading = true;
