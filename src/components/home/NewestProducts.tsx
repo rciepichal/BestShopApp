@@ -1,8 +1,8 @@
 import { Box, Paper, Typography } from '@mui/material';
 import { useEffect } from 'react';
+import { getNewestProducts } from '../../shared/features/newestProducts/newestProductsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
 import { Product } from '../../shared/models';
-import { getNewestProducts } from '../../shared/features/productSlice';
 import SingleProductTile from './SingleProductTile';
 
 type Props = {};

@@ -13,12 +13,15 @@ const initialState: InitialState = {
   allProducts: [],
   isLoading: true,
 };
-const getAllProducts = createAsyncThunk('product/getAllProducts', async () => {
-  const resp = await axios(url);
-  const data: Product[] = resp.data;
-  const products = paginate(data);
-  return products;
-});
+export const getAllProducts = createAsyncThunk(
+  'product/getAllProducts',
+  async () => {
+    const resp = await axios(url);
+    const data: Product[] = resp.data;
+    const products = paginate(data);
+    return products;
+  }
+);
 
 const allProductsSlice = createSlice({
   name: 'allProducts',

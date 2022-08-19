@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import SingleProductTile from '../components/home/SingleProductTile';
 import Loading from '../components/Loading';
+import { getAllProducts } from '../shared/features/allProducts/allProductsSlice';
 import { useAppDispatch, useAppSelector } from '../shared/hooks/hooks';
 import { Product } from '../shared/models';
-import { getAllProducts } from '../shared/features/productSlice';
 
 const Products = () => {
   const { isLoading, allProducts } = useAppSelector(

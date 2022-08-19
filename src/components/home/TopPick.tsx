@@ -4,7 +4,7 @@ import { Product } from '../../shared/models';
 import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
 import SingleProductTile from './SingleProductTile';
 import CloseIcon from '@mui/icons-material/Close';
-import { getTopPick } from '../../shared/features/productSlice';
+import { getTopPick } from '../../shared/features/topPick/topPickSlice';
 
 const TopPick = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
