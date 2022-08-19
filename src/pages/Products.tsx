@@ -1,6 +1,6 @@
 import { Box, Button, Input, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import Footer from '../components/home/Footer';
+import Footer from '../components/Footer';
 import SingleProductTile from '../components/home/SingleProductTile';
 import Loading from '../components/Loading';
 import { useAppDispatch, useAppSelector } from '../shared/hooks/hooks';
@@ -16,12 +16,13 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    console.log(products);
+    console.log(isLoading);
   }, []);
 
   useEffect(() => {
     if (isLoading) return;
     setItems(products[page]);
-    console.log(products);
   }, [isLoading, page]);
 
   if (isLoading) {
@@ -72,14 +73,14 @@ const Products = () => {
               <SingleProductTile
                 key={product.id}
                 product={product}
-                isOnSale={true}
+                isOnSale={false}
                 isProductPage={true}
               />
             );
           })}
         </Box>
         {!isLoading && (
-          <Box sx={{ pt: 3, margin: 'auto' }}>
+          <Box sx={{ py: 5, margin: 'auto' }}>
             {products.map((item, idx) => {
               return (
                 <Button

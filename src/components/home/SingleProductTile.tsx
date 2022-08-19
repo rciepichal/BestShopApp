@@ -111,8 +111,13 @@ const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
                   >
                     {price.toFixed(2)}$
                   </Typography>
-                  <Typography component="span" variant="body1" color="primary">
-                    123
+                  <Typography
+                    component="span"
+                    variant="body1"
+                    color="primary"
+                    sx={{ pl: 1 }}
+                  >
+                    {(price * 0.88).toFixed(2)}$
                   </Typography>
                 </Box>
               ) : (

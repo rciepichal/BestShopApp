@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../shared/hooks/hooks';
 
-type Props = {};
+const SingleProduct = () => {
+  const { id } = useParams();
+  const { singleProduct } = useAppSelector((store) => store.product);
+  const dispatch = useAppDispatch();
 
-const SingleProduct = (props: Props) => {
-  return <div>SingleProduct</div>;
+  useEffect(() => {
+    console.log(singleProduct);
+  }, []);
+
+  return <div>SingleProduct id:{id}</div>;
 };
 
 export default SingleProduct;

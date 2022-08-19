@@ -3,13 +3,13 @@ import { Product } from '../models';
 import axios from 'axios';
 import paginate from '../hooks/paginate';
 
-const urlItemsCount = 'https://fakestoreapi.com/products?limit=';
-const urlAllItems = 'https://fakestoreapi.com/products';
+const url = 'https://fakestoreapi.com/products';
 
 type InitialState = {
   newestProducts: Product[];
   topPick: Product;
   products: Product[][];
+  singleProduct: Product;
   isLoading: boolean;
 };
 
@@ -28,18 +28,30 @@ const initialState: InitialState = {
     },
   },
   products: [],
+  singleProduct: {
+    id: 12,
+    title: 'Test',
+    price: 12,
+    description: 'Test',
+    category: 'Test',
+    image: 'Test',
+    rating: {
+      rate: 12,
+      count: 12,
+    },
+  },
   isLoading: true,
 };
 
 export const getNewestProducts = createAsyncThunk(
   'product/getNewestProducts',
   async (num: number) => {
-    const resp = await axios(`${urlItemsCount}${num}`);
+    const resp = await axios(`${url}?limit=${num}`);
     return resp.data;
   }
 );
 export const getTopPick = createAsyncThunk('product/getTopPick', async () => {
-  const resp = await axios(`${urlItemsCount}10`);
+  const resp = await axios(`${url}?limit=5`);
   const products: Product[] = resp.data;
   const topPick: Product = products.reduce((prev, curr) => {
     return prev.rating.count > curr.rating.count ? prev : curr;
@@ -50,10 +62,18 @@ export const getTopPick = createAsyncThunk('product/getTopPick', async () => {
 export const getAllProducts = createAsyncThunk(
   'product/getAllProducts',
   async () => {
-    const resp = await axios(urlAllItems);
+    const resp = await axios(url);
     const data: Product[] = resp.data;
     const products = paginate(data);
     return products;
+  }
+);
+
+export const getSingleProduct = createAsyncThunk(
+  'product/getSingleProduct',
+  async (id: number) => {
+    const resp = await axios(`${url}/${id}`);
+    return resp.data;
   }
 );
 
@@ -67,21 +87,28 @@ const productSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getNewestProducts.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.newestProducts = action.payload;
+        state.isLoading = false;
       })
       .addCase(getTopPick.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getTopPick.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.topPick = action.payload;
+        state.isLoading = false;
       })
       .addCase(getAllProducts.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getSingleProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSingleProduct.fulfilled, (state, action) => {
+        state.singleProduct = action.payload;
         state.isLoading = false;
       });
   },
