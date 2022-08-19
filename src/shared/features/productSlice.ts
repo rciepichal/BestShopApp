@@ -85,29 +85,41 @@ const productSlice = createSlice({
     builder
       .addCase(getNewestProducts.pending, (state) => {
         state.isLoading = true;
+        console.log('GetNewestProducts');
       })
       .addCase(getNewestProducts.fulfilled, (state, action) => {
         state.newestProducts = action.payload;
         state.isLoading = false;
-      })
+      });
+    builder
       .addCase(getTopPick.pending, (state) => {
         state.isLoading = true;
+        console.log('GetTopPick');
       })
       .addCase(getTopPick.fulfilled, (state, action) => {
+        state.isLoading = true;
+        console.log(`GetTopPick pending: ${state.isLoading}`);
         state.topPick = action.payload;
         state.isLoading = false;
-      })
+      });
+    builder
       .addCase(getAllProducts.pending, (state) => {
         state.isLoading = true;
+        console.log(`GetAllProducts pending: ${state.isLoading}`);
       })
       .addCase(getAllProducts.fulfilled, (state, action) => {
+        state.isLoading = true;
+        console.log(`GetAllProducts fulfill: ${state.isLoading}`);
         state.products = action.payload;
         state.isLoading = false;
-      })
+        console.log(`GetAllProducts fulfill after payload: ${state.isLoading}`);
+      });
+    builder
       .addCase(getSingleProduct.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getSingleProduct.fulfilled, (state, action) => {
+        state.isLoading = true;
         state.singleProduct = action.payload;
         state.isLoading = false;
       });

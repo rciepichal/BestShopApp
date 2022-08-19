@@ -5,10 +5,12 @@ import SingleProductTile from '../components/home/SingleProductTile';
 import Loading from '../components/Loading';
 import { useAppDispatch, useAppSelector } from '../shared/hooks/hooks';
 import { Product } from '../shared/models';
-import { getAllProducts } from '../shared/slice/productSlice';
+import { getAllProducts } from '../shared/features/productSlice';
 
 const Products = () => {
-  const { isLoading, products } = useAppSelector((store) => store.product);
+  const { isLoading, allProducts } = useAppSelector(
+    (store) => store.allProducts
+  );
   const dispatch = useAppDispatch();
 
   const [page, setPage] = useState(0);
@@ -16,16 +18,14 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
-    console.log(products);
-    console.log(isLoading);
   }, []);
 
   useEffect(() => {
     if (isLoading) return;
-    setItems(products[page]);
+    setItems(allProducts[page]);
   }, [isLoading, page]);
 
-  if (isLoading) {
+  if (isLoading || allProducts === []) {
     return <Loading />;
   }
 
@@ -36,7 +36,7 @@ const Products = () => {
           display: 'flex',
           alignItems: 'center',
           flexFlow: 'column wrap',
-          maxWidth: '45rem',
+          maxWidth: '40rem',
           m: { xs: 'auto', lg: '1rem auto 0 auto' },
         }}
       >
@@ -81,7 +81,7 @@ const Products = () => {
         </Box>
         {!isLoading && (
           <Box sx={{ py: 5, margin: 'auto' }}>
-            {products.map((item, idx) => {
+            {allProducts.map((item, idx) => {
               return (
                 <Button
                   key={idx}
@@ -96,7 +96,7 @@ const Products = () => {
           </Box>
         )}
       </Box>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
