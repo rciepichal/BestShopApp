@@ -5,16 +5,18 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <>
-      <Box
+      <Paper
         sx={{
           display: 'flex',
           flexFlow: { xs: 'column-reverse', md: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
           p: 3,
+          backgroundColor: '#8D8D8D',
         }}
+        elevation={5}
       >
-        <Paper sx={{ p: 0.5 }} elevation={2}>
+        <Paper sx={{ p: 0.5 }} elevation={4}>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1243.2482093740698!2d19.45472271281245!3d51.77678265008294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471bcada0d168995%3A0xcf30ab67508acc5!2zcGxhYyBXb2xub8WbY2ksIDkxLTAwMSDFgcOzZMW6!5e0!3m2!1spl!2spl!4v1660040134160!5m2!1spl!2spl"
             width="270"
@@ -52,7 +54,7 @@ const Footer = () => {
           </Typography>
           <Divider />
         </Box>
-      </Box>
+      </Paper>
       <Typography
         variant="caption"
         component="p"

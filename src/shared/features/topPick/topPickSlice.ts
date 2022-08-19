@@ -1,43 +1,30 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Product } from '../models';
 import axios from 'axios';
+import { Product } from '../../models';
 
-const urlItemsCount = 'https://fakestoreapi.com/products?limit=';
+const url = 'https://fakestoreapi.com/products';
 
 type InitialState = {
-  newestProducts: Product[];
   topPick: Product;
-  products: Product[];
   isLoading: boolean;
 };
-
 const initialState: InitialState = {
-  newestProducts: [],
   topPick: {
-    id: 12,
+    id: 0,
     title: 'Test',
-    price: 12,
+    price: 0,
     description: 'Test',
     category: 'Test',
     image: 'Test',
     rating: {
-      rate: 12,
-      count: 12,
+      rate: 0,
+      count: 0,
     },
   },
-  products: [],
   isLoading: true,
 };
-
-export const getNewestProducts = createAsyncThunk(
-  'product/getNewestProducts',
-  async (num: number) => {
-    const resp = await axios(`${urlItemsCount}${num}`);
-    return resp.data;
-  }
-);
 export const getTopPick = createAsyncThunk('product/getTopPick', async () => {
-  const resp = await axios(`${urlItemsCount}10`);
+  const resp = await axios(`${url}?limit=5`);
   const products: Product[] = resp.data;
   const topPick: Product = products.reduce((prev, curr) => {
     return prev.rating.count > curr.rating.count ? prev : curr;
@@ -45,23 +32,21 @@ export const getTopPick = createAsyncThunk('product/getTopPick', async () => {
   return topPick;
 });
 
-const productSlice = createSlice({
-  name: 'products',
+const getTopPickSlice = createSlice({
+  name: 'getTopPick',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getNewestProducts.pending, (state) => {
+      .addCase(getTopPick.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getNewestProducts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.newestProducts = action.payload;
-      })
       .addCase(getTopPick.fulfilled, (state, action) => {
+        state.isLoading = true;
         state.topPick = action.payload;
+        state.isLoading = false;
       });
   },
 });
 
-export default productSlice.reducer;
+export default getTopPickSlice.reducer;

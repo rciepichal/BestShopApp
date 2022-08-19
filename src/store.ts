@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import productReducer from './shared/slice/productSlice';
+import allProductsReducer from './shared/features/allProducts/allProductsSlice';
+import topPickReducer from './shared/features/topPick/topPickSlice';
+import newestProductsReducer from './shared/features/newestProducts/newestProductsSlice';
 
-export const store = configureStore({
+export let store = configureStore({
   reducer: {
-    product: productReducer,
+    allProducts: allProductsReducer,
+    topPick: topPickReducer,
+    newestProducts: newestProductsReducer,
   },
 });
 
