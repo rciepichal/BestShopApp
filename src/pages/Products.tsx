@@ -3,16 +3,11 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../components/home/Footer';
 import SingleProductTile from '../components/home/SingleProductTile';
 import Loading from '../components/Loading';
-import usePagination, {
-  useAppDispatch,
-  useAppSelector,
-} from '../shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../shared/hooks/hooks';
 import { Product } from '../shared/models';
 import { getAllProducts } from '../shared/slice/productSlice';
 
-type Props = {};
-
-const Products = (props: Props) => {
+const Products = () => {
   const { isLoading, products } = useAppSelector((store) => store.product);
   const dispatch = useAppDispatch();
 
@@ -40,8 +35,8 @@ const Products = (props: Props) => {
           display: 'flex',
           alignItems: 'center',
           flexFlow: 'column wrap',
-          maxWidth: '50rem',
-          m: 'auto',
+          maxWidth: '45rem',
+          m: { xs: 'auto', lg: '1rem auto 0 auto' },
         }}
       >
         <Typography
@@ -77,7 +72,7 @@ const Products = (props: Props) => {
               <SingleProductTile
                 key={product.id}
                 product={product}
-                isOnSale={false}
+                isOnSale={true}
                 isProductPage={true}
               />
             );

@@ -5,13 +5,6 @@ type Props = {
   category: string;
 };
 
-const categories = [
-  'electronics',
-  'jewelery',
-  "men's clothing",
-  "women's clothing",
-];
-
 const CategoryBadge = (props: Props) => {
   const imagePicker = (category: string) => {
     switch (category) {
@@ -31,24 +24,21 @@ const CategoryBadge = (props: Props) => {
   return (
     <Box
       sx={{
-        position: 'absolute',
-        top: '55%',
-        left: '50%',
-        transform: 'translateX(-50%)',
         backgroundColor: imagePicker(props.category),
         opacity: 0.8,
         borderRadius: '10px',
         textTransform: 'uppercase',
         zIndex: 3,
+        display: 'inline-flex',
+        mx: 'auto',
       }}
     >
       <Typography
         variant="body2"
-        component="span"
+        component="p"
         sx={{
-          textAlign: 'center',
           fontSize: { xs: '0.5rem', lg: '0.6rem' },
-          padding: '0 1rem',
+          padding: '0.2rem 1rem',
         }}
       >
         {props.category}

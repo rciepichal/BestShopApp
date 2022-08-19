@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <>
-      <Box
+      <Paper
         sx={{
           display: 'flex',
           flexFlow: { xs: 'column-reverse', md: 'row' },
@@ -52,7 +52,7 @@ const Footer = () => {
           </Typography>
           <Divider />
         </Box>
-      </Box>
+      </Paper>
       <Typography
         variant="caption"
         component="p"
