@@ -1,10 +1,10 @@
-import { Box, Button, Input, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import SingleProductTile from '../components/home/SingleProductTile';
 import Loading from '../components/Loading';
 import { getAllProducts } from '../shared/features/allProducts/allProductsSlice';
-import { useAppDispatch, useAppSelector } from '../shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../shared/utils/hooks';
 import { Product } from '../shared/models';
 
 const Products = () => {
@@ -18,11 +18,13 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isLoading) return;
     setItems(allProducts[page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, page]);
 
   if (isLoading || allProducts === []) {
@@ -60,7 +62,7 @@ const Products = () => {
         sx={{
           display: 'flex',
           flexFlow: 'column wrap',
-          maxWidth: '50rem',
+          maxWidth: '42rem',
           m: 'auto',
         }}
       >
@@ -73,7 +75,7 @@ const Products = () => {
               <SingleProductTile
                 key={product.id}
                 product={product}
-                isOnSale={false}
+                isOnSale={true}
                 isProductPage={true}
               />
             );
@@ -96,7 +98,7 @@ const Products = () => {
           </Box>
         )}
       </Box>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

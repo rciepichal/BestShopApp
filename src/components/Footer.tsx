@@ -1,6 +1,7 @@
 import { Box, Divider, Paper, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import backgroundImage from '../media/footerBckg.svg';
 
 const Footer = () => {
   return (
@@ -13,6 +14,7 @@ const Footer = () => {
           alignItems: 'center',
           p: 3,
           backgroundColor: '#8D8D8D',
+          backgroundImage: `url(${backgroundImage})`,
         }}
         elevation={5}
       >
@@ -33,6 +35,7 @@ const Footer = () => {
             justifyContent: 'center',
             pl: 3,
             textAlign: { xs: 'center', md: 'left' },
+            color: '#fff',
           }}
         >
           <Divider />
@@ -59,7 +62,7 @@ const Footer = () => {
         variant="caption"
         component="p"
         align="center"
-        sx={{ color: 'primary.main', backgroundColor: 'secondary.main' }}
+        sx={{ color: '#fff', backgroundColor: 'black' }}
       >
         Copyright &copy;2022 by <Link to={'/'}>BestShop</Link>
       </Typography>

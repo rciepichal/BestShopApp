@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Product } from '../../shared/models';
-import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../shared/utils/hooks';
 import SingleProductTile from './SingleProductTile';
 import CloseIcon from '@mui/icons-material/Close';
 import { getTopPick } from '../../shared/features/topPick/topPickSlice';

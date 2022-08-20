@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import paginate from '../../hooks/paginate';
+import paginate from '../../utils/paginate';
 import { Product } from '../../models';
 
 const url = 'https://fakestoreapi.com/products';

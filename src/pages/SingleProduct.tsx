@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../shared/utils/hooks';
 
 const SingleProduct = () => {
   const { id } = useParams();
