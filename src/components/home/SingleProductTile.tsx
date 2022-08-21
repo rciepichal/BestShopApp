@@ -74,7 +74,10 @@ const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
             height="130"
             image={image}
             alt={title}
-            sx={{ objectFit: 'contain', paddingTop: 2 }}
+            sx={{
+              objectFit: 'contain',
+              paddingTop: 2,
+            }}
           ></CardMedia>
 
           <CardContent>

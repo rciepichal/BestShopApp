@@ -20,14 +20,7 @@ export const theme: Theme = createTheme({
       default: '#fbf0f0',
     },
   },
+  typography: {
+    fontFamily: 'Raleway, sans-serif',
+  },
 });
-// primary: {
-//   main: '#D40000',
-//   light: '#E12C2C',
-//   contrastText: '#dcd5d5',
-// },
-// secondary: {
-//   main: '#FFD700',
-//   light: '#ffff00',
-//   dark: '#FFA500',
-// },

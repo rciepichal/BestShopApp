@@ -1,4 +1,6 @@
 import { Paper, Typography, Grid, Box, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import heroBannerImg from '../../media/heroBanner2.jpg';
 
 type Props = {};
 
@@ -15,14 +17,12 @@ const HeroBanner = (props: Props) => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${imgUrl})`,
+        backgroundImage: `url(${heroBannerImg})`,
         backgroundAttachment: 'fixed',
         height: '100vh',
       }}
       elevation={5}
     >
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={imgUrl} alt="" />}
       <Box
         sx={{
           position: 'absolute',
@@ -43,8 +43,12 @@ const HeroBanner = (props: Props) => {
           <Box
             sx={{
               position: 'relative',
-              p: { xs: 0, md: 6 },
+              p: { xs: 3, md: 4 },
               textAlign: 'center',
+              boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+              backdropFilter: 'blur(10px)',
+              background: ' rgba( 255, 255, 255, 0.25 )',
+              borderRadius: '20px',
             }}
           >
             <Typography
@@ -52,15 +56,23 @@ const HeroBanner = (props: Props) => {
               variant="h3"
               color="inherit"
               gutterBottom
+              sx={{ textShadow: '3px 3px 0px rgba(255, 0, 0, 0.5)' }}
             >
               Welcome to BestShop!
             </Typography>
-            <Typography variant="h6" color="inherit" paragraph>
+            <Typography
+              variant="h6"
+              color="inherit"
+              paragraph
+              sx={{ textShadow: '2px 2px 0px rgba(255, 0, 0, 0.5)' }}
+            >
               Literally the best shop in the internet!
             </Typography>
-            <Button variant="contained" size="large">
-              Go to products
-            </Button>
+            <Link to="/products" style={{ textDecoration: 'none' }}>
+              <Button variant="contained" size="large">
+                Go to products
+              </Button>
+            </Link>
           </Box>
         </Grid>
       </Grid>

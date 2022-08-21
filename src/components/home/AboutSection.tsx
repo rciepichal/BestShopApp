@@ -6,25 +6,29 @@ const AboutSection = () => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        p: 5,
+        py: 10,
       }}
     >
       <Box
         sx={{
           width: { xs: '80%', md: '50%' },
-          textAlign: 'justify',
+          textAlign: 'center',
         }}
       >
-        <Typography component="h3" variant="body2">
-          <Typography
-            display="inline"
-            component="span"
-            variant="h4"
-            sx={{ lineHeight: 0.9 }}
-          >
-            K
-          </Typography>
-          itsch wayfarers mixtape kinfolk poutine irony tofu snackwave deep v
+        <Typography
+          component="h2"
+          variant="h2"
+          sx={{ fontSize: { xs: '2rem', md: '4rem' } }}
+          gutterBottom
+        >
+          What we do
+        </Typography>
+        <Typography
+          component="h3"
+          variant="body2"
+          sx={{ fontSize: { xs: '.8rem', md: '1rem' } }}
+        >
+          Kitsch wayfarers mixtape kinfolk poutine irony tofu snackwave deep v
           bruh hoodie salvia mollit kickstarter. Swag yuccie kogi listicle non
           8-bit tbh DSA organic. DIY eiusmod mixtape laborum consequat ramps art
           party vibecession hashtag. Duis enim umami deserunt ascot, distillery

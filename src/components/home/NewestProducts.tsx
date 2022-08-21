@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { getNewestProducts } from '../../shared/features/newestProducts/newestProductsSlice';
-import { useAppDispatch, useAppSelector } from '../../shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../shared/utils/hooks';
 import { Product } from '../../shared/models';
 import SingleProductTile from './SingleProductTile';
 
@@ -25,12 +25,10 @@ const NewestProducts = (props: Props) => {
         display: 'flex',
         flexFlow: 'column',
         alignItems: 'center',
-        p: 2,
-        background:
-          'linear-gradient(180deg, rgba(255,165,0,1) 0%, rgba(255,223,0,1) 100%);',
+        py: 4,
       }}
     >
-      <Typography component="h2" variant="h4" gutterBottom color={'primary'}>
+      <Typography component="h2" variant="h4" color={'primary'}>
         Newest products
       </Typography>
       <Box
@@ -46,7 +44,7 @@ const NewestProducts = (props: Props) => {
         {newestProducts.map((product) => (
           <SingleProductTile
             product={product}
-            isOnSale={true}
+            isOnSale={false}
             key={product.id}
           />
         ))}
