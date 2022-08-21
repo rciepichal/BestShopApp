@@ -1,20 +1,35 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import {
+  Box,
+  Pagination,
+  PaginationItem,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import SingleProductTile from '../components/home/SingleProductTile';
 import Loading from '../components/Loading';
 import { getAllProducts } from '../shared/features/allProducts/allProductsSlice';
 import { useAppDispatch, useAppSelector } from '../shared/utils/hooks';
 import { Product } from '../shared/models';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const Products = () => {
   const { isLoading, allProducts } = useAppSelector(
     (store) => store.allProducts
   );
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get('page')) || 1;
+  const query = searchParams.get('query');
 
-  const [page, setPage] = useState(0);
   const [items, setItems] = useState<Product[]>([]);
+
+  const generateLink = useCallback(
+    (page: number | null) =>
+      `?${query ? 'query=' + query + '&' : ''}page=${page}`,
+    [query]
+  );
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -23,7 +38,7 @@ const Products = () => {
 
   useEffect(() => {
     if (isLoading) return;
-    setItems(allProducts[page]);
+    setItems(allProducts[page - 1]);
   }, [isLoading, page, allProducts]);
 
   if (isLoading || allProducts === []) {
@@ -82,18 +97,19 @@ const Products = () => {
         </Box>
         {!isLoading && (
           <Box sx={{ py: 5, margin: 'auto' }}>
-            {allProducts.map((item, idx) => {
-              return (
-                <Button
-                  key={idx}
-                  variant={page === idx ? 'contained' : 'outlined'}
-                  sx={{ minWidth: '1rem', mx: 1 }}
-                  onClick={() => setPage(idx)}
-                >
-                  {idx + 1}
-                </Button>
-              );
-            })}
+            <Pagination
+              count={allProducts.length}
+              page={page}
+              renderItem={(item) =>
+                item.disabled ? (
+                  <PaginationItem {...item} />
+                ) : (
+                  <Link to={generateLink(item.page)}>
+                    <PaginationItem {...item} />
+                  </Link>
+                )
+              }
+            />
           </Box>
         )}
       </Box>
