@@ -24,8 +24,7 @@ const Products = () => {
   useEffect(() => {
     if (isLoading) return;
     setItems(allProducts[page]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, page]);
+  }, [isLoading, page, allProducts]);
 
   if (isLoading || allProducts === []) {
     return <Loading />;
@@ -75,7 +74,7 @@ const Products = () => {
               <SingleProductTile
                 key={product.id}
                 product={product}
-                isOnSale={true}
+                isOnSale={false}
                 isProductPage={true}
               />
             );
