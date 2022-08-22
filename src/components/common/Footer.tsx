@@ -1,7 +1,7 @@
 import { Box, Divider, Paper, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import backgroundImage from '../media/footerBckg.svg';
+import backgroundImage from '../../media/footerBckg.svg';
 
 const Footer = () => {
   return (

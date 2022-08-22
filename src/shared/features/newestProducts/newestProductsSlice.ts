@@ -28,7 +28,6 @@ const getNewestProductsSlice = createSlice({
     builder
       .addCase(getNewestProducts.pending, (state) => {
         state.isLoading = true;
-        console.log('GetNewestProducts');
       })
       .addCase(getNewestProducts.fulfilled, (state, action) => {
         state.isLoading = true;

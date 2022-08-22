@@ -6,7 +6,7 @@ const AboutSection = () => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        py: 10,
+        my: { xs: 5, sm: 10 },
       }}
     >
       <Box
@@ -18,7 +18,7 @@ const AboutSection = () => {
         <Typography
           component="h2"
           variant="h2"
-          sx={{ fontSize: { xs: '2rem', md: '4rem' } }}
+          sx={{ fontSize: { xs: '2rem', md: '3rem' } }}
           gutterBottom
         >
           What we do

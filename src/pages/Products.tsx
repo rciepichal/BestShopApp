@@ -1,14 +1,19 @@
 import {
   Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
   Pagination,
   PaginationItem,
+  Select,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import Footer from '../components/Footer';
-import SingleProductTile from '../components/home/SingleProductTile';
-import Loading from '../components/Loading';
+import Footer from '../components/common/Footer';
+import SingleProductTile from '../components/common/SingleProductTile';
+import Loading from '../components/common/Loading';
 import { getAllProducts } from '../shared/features/allProducts/allProductsSlice';
 import { useAppDispatch, useAppSelector } from '../shared/utils/hooks';
 import { Product } from '../shared/models';
@@ -24,12 +29,17 @@ const Products = () => {
   const query = searchParams.get('query');
 
   const [items, setItems] = useState<Product[]>([]);
+  const [category, setCategory] = useState('');
 
   const generateLink = useCallback(
     (page: number | null) =>
       `?${query ? 'query=' + query + '&' : ''}page=${page}`,
     [query]
   );
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCategory(event.target.value as string);
+  };
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -60,17 +70,43 @@ const Products = () => {
           variant="h3"
           component="h3"
           sx={{
-            fontSize: { xs: '0.9rem', lg: '2rem' },
-            margin: '1rem 0',
+            fontSize: { xs: '1.3rem', lg: '2rem' },
+            margin: '2rem 0 1.5rem',
           }}
         >
           Browse our products
         </Typography>
-        <TextField
-          variant="outlined"
-          label="Search for..."
-          sx={{ width: { xs: '80%', lg: '50%' } }}
-        />
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            flexFlow: 'row wrap',
+            justifyContent: 'center',
+          }}
+        >
+          <TextField
+            variant="outlined"
+            label="Search for..."
+            sx={{ width: { xs: '80%', sm: '40%' } }}
+          />
+          <Box sx={{ width: 150, m: { xs: '15px 0 0 0', sm: '0 0 0 10px' } }}>
+            <FormControl fullWidth>
+              <InputLabel id="category">Category</InputLabel>
+              <Select
+                labelId="category"
+                id="category-select"
+                value={category}
+                label="Category"
+                onChange={handleChange}
+                MenuProps={{ sx: { width: '100px' } }}
+              >
+                <MenuItem value={'all'}>All</MenuItem>
+                <MenuItem value={'electronic'}>Electronics</MenuItem>
+                <MenuItem value={'jewelery'}>Jewelry</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        </Box>
       </Box>
       <Box
         sx={{

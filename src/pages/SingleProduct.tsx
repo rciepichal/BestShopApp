@@ -1,12 +1,12 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Rating, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 import CategoryBadge from '../components/products/CategoryBadge';
 import { getSingleProduct } from '../shared/features/singleProduct/singleProductSlice';
 import { useAppDispatch, useAppSelector } from '../shared/utils/hooks';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Footer from '../components/Footer';
+import Footer from '../components/common/Footer';
 
 const SingleProduct = () => {
   const productId = useParams().id;
@@ -27,8 +27,7 @@ const SingleProduct = () => {
   if (!singleProduct) {
     return <h2>Sorry that product does not exist!</h2>;
   }
-  const { id, title, image, description, rating, category, price } =
-    singleProduct;
+  const { title, image, description, rating, category, price } = singleProduct;
 
   return (
     <>
@@ -90,7 +89,20 @@ const SingleProduct = () => {
                 {title}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid xs={12} container justifyContent="center">
+              <Rating name="rating" value={rating.rate} precision={0.5} />
+              <Typography
+                sx={{
+                  typography: { xs: 'caption' },
+                  textAlign: 'justify',
+                }}
+                component="span"
+                pl={0.5}
+              >
+                of {rating.count} votes
+              </Typography>
+            </Grid>
+            <Grid item xs={12} my={1}>
               <Typography
                 sx={{
                   typography: { xs: 'body2', md: 'body1' },
@@ -112,12 +124,8 @@ const SingleProduct = () => {
                 {price.toFixed(2)}$
               </Typography>
             </Grid>
-            <Grid
-              xs={12}
-              container
-              justifyContent="center"
-              my={{ xs: 3, sm: 0 }}
-            >
+
+            <Grid xs={12} container justifyContent="center" my={3}>
               <Button color="primary" variant="outlined">
                 Add to cart
               </Button>

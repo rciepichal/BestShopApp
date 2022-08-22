@@ -100,7 +100,7 @@ const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
                   fontSize: { xs: '1rem', lg: '1.1rem' },
                 }}
               >
-                {title}
+                {title.length < 50 ? title : `${title.substring(0, 65)}...`}
               </Typography>
             </Box>
             {isProductPage &&

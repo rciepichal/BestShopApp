@@ -1,19 +1,18 @@
 import { Box, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { Product } from '../../shared/models';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../shared/utils/hooks';
-import SingleProductTile from './SingleProductTile';
+import SingleProductTile from '../common/SingleProductTile';
 import CloseIcon from '@mui/icons-material/Close';
 import { getTopPick } from '../../shared/features/topPick/topPickSlice';
 
 const TopPick = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { topPick } = useAppSelector((store) => store.topPick);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getTopPick());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Box
