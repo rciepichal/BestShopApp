@@ -6,17 +6,17 @@ import backgroundImage from '../media/footerBckg.svg';
 const Footer = () => {
   return (
     <>
-      <Paper
+      <Box
         sx={{
           display: 'flex',
           flexFlow: { xs: 'column-reverse', md: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
           p: 3,
+          mt: 3,
           backgroundColor: '#8D8D8D',
           backgroundImage: `url(${backgroundImage})`,
         }}
-        elevation={5}
       >
         <Paper sx={{ p: 0.5 }} elevation={4}>
           <iframe
@@ -33,7 +33,7 @@ const Footer = () => {
             display: 'flex',
             flexFlow: 'column wrap',
             justifyContent: 'center',
-            pl: 3,
+            pl: { xs: 0, sm: 3 },
             textAlign: { xs: 'center', md: 'left' },
             color: '#fff',
           }}
@@ -57,7 +57,7 @@ const Footer = () => {
           </Typography>
           <Divider />
         </Box>
-      </Paper>
+      </Box>
       <Typography
         variant="caption"
         component="p"

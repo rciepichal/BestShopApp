@@ -100,11 +100,15 @@ const Products = () => {
             <Pagination
               count={allProducts.length}
               page={page}
+              color={'primary'}
               renderItem={(item) =>
                 item.disabled ? (
                   <PaginationItem {...item} />
                 ) : (
-                  <Link to={generateLink(item.page)}>
+                  <Link
+                    to={generateLink(item.page)}
+                    style={{ textDecoration: 'none' }}
+                  >
                     <PaginationItem {...item} />
                   </Link>
                 )

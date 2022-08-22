@@ -5,6 +5,8 @@ import Loading from '../components/Loading';
 import CategoryBadge from '../components/products/CategoryBadge';
 import { getSingleProduct } from '../shared/features/singleProduct/singleProductSlice';
 import { useAppDispatch, useAppSelector } from '../shared/utils/hooks';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Footer from '../components/Footer';
 
 const SingleProduct = () => {
   const productId = useParams().id;
@@ -16,7 +18,8 @@ const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
-  }, []);
+    console.log('test');
+  }, [dispatch, productId]);
 
   if (isLoading) {
     return <Loading />;
@@ -28,55 +31,102 @@ const SingleProduct = () => {
     singleProduct;
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        flexFlow: 'column nowrap',
-        alignItems: 'center',
-      }}
-    >
-      <Button onClick={() => navigate(-1)}>Back</Button>
-      <Grid
-        container
-        spacing={1}
-        direction={{ xs: 'column', sm: 'row' }}
-        justifyContent="center"
-        alignItems="center"
-        width={{ xs: '100%', sm: '90%', md: '80%' }}
-        sx={{ m: 0 }}
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexFlow: 'column nowrap',
+          alignItems: 'center',
+        }}
       >
-        <Grid xs={6} sm={4} container justifyContent="center">
-          <Box component="img" src={image} sx={{ width: '100%' }}></Box>
-        </Grid>
-        <Grid xs={10} sm={8}>
+        <Box my={{ xs: '10px ', sm: '20px' }} sx={{ width: '80%' }}>
+          <Button
+            onClick={() => navigate(-1)}
+            color="secondary"
+            variant="contained"
+          >
+            <ArrowBackIcon /> Back
+          </Button>
+        </Box>
+        <Grid
+          container
+          direction={{ xs: 'column', sm: 'row' }}
+          justifyContent="center"
+          alignItems="center"
+          width={{ xs: '90%', md: '80%' }}
+          mx="auto"
+        >
+          <Grid xs={6} sm={4} item justifyContent="center">
+            <Box
+              component="img"
+              src={image}
+              sx={{ maxWidth: '100%', maxHeight: { xs: '50vh', sm: '100vh' } }}
+            ></Box>
+          </Grid>
           <Grid
+            xs={10}
+            sm={8}
+            item
             container
             direction="row"
             justifyContent="center"
             alignItems="center"
+            pl={{ sm: 3 }}
+            pt={{ xs: 2, sm: 0 }}
           >
             <Grid
-              xs={12}
               container
+              xs={12}
               justifyContent={{ xs: 'center', sm: 'start' }}
             >
               <CategoryBadge category={category} />
             </Grid>
-            <Grid xs={12} sx={{ textAlign: { xs: 'center' } }}>
-              {title}
+            <Grid item xs={12} sx={{ textAlign: { xs: 'center' } }}>
+              <Typography
+                sx={{ typography: { xs: 'h5', md: 'h4' }, pb: 2 }}
+                component="h5"
+              >
+                {title}
+              </Typography>
             </Grid>
-            <Grid xs={12}>{description}</Grid>
+            <Grid item xs={12}>
+              <Typography
+                sx={{
+                  typography: { xs: 'body2', md: 'body1' },
+                  textAlign: 'justify',
+                }}
+                component="p"
+              >
+                {description}
+              </Typography>
+            </Grid>
             <Grid xs={12} justifyContent="center">
-              {price}$
+              <Typography
+                sx={{
+                  typography: { xs: 'h6', md: 'h5' },
+                  textAlign: 'center',
+                }}
+                component="p"
+              >
+                {price.toFixed(2)}$
+              </Typography>
             </Grid>
-            <Grid xs={12} container justifyContent="center">
-              <Button>Add to cart</Button>
+            <Grid
+              xs={12}
+              container
+              justifyContent="center"
+              my={{ xs: 3, sm: 0 }}
+            >
+              <Button color="primary" variant="outlined">
+                Add to cart
+              </Button>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+      <Footer />
+    </>
   );
 };
 
