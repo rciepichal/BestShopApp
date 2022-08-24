@@ -10,3 +10,7 @@ export type Product = {
     count: number;
   };
 };
+
+export type CartItemModel = { product: Product; amount: number };
+
+// export type CartItemModel2 = { product: Product; amount: number };

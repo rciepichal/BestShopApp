@@ -2,6 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Cart from './pages/Cart';
+import Contact from './pages/Contact';
 import Error from './pages/Error';
 import Home from './pages/Home';
 import Order from './pages/Order';
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="products" element={<Products />} />
             <Route path="products/:id" element={<SingleProduct />} />
+            <Route path="contact" element={<Contact />} />
             <Route path="cart" element={<Cart />} />
             <Route path="order" element={<Order />} />
             <Route path="*" element={<Error />} />
