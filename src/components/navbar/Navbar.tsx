@@ -15,10 +15,13 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './navbar.scss';
 import { useState } from 'react';
+import { useAppSelector } from '../../shared/utils/hooks';
 
 const pages = ['Home', 'Products', 'Contact'];
 
 const ResponsiveAppBar = () => {
+  const { totalAmount } = useAppSelector((store) => store.cart);
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const { pathname } = useLocation();
 
@@ -159,11 +162,11 @@ const ResponsiveAppBar = () => {
                 }
               >
                 {pathname === '/cart' ? (
-                  <Badge badgeContent={0} color="primary" showZero>
+                  <Badge badgeContent={totalAmount} color="primary" showZero>
                     <ShoppingCartIcon sx={{ fontSize: '2rem' }} />
                   </Badge>
                 ) : (
-                  <Badge badgeContent={0} color="secondary" showZero>
+                  <Badge badgeContent={totalAmount} color="secondary" showZero>
                     <ShoppingCartIcon sx={{ fontSize: '2rem' }} />
                   </Badge>
                 )}

@@ -1,23 +1,29 @@
-import { Grid, Typography, Box, Divider } from '@mui/material';
+import { Grid, Typography, Box, Divider, Button } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import React from 'react';
 import { CartItemModel } from '../../shared/models';
+import { useAppDispatch } from '../../shared/utils/hooks';
+import { changeAmount } from '../../shared/features/cart/cartSlice';
 
-type Props = { item: CartItemModel };
-
-const CartItem = (props: Props) => {
-  const { product, amount } = props.item;
-  console.log(product);
+const CartItem = (props: CartItemModel) => {
+  const { id, title, price, image, amount } = props;
+  const dispatch = useAppDispatch();
 
   return (
     <>
-      <Grid container item spacing={0} alignItems="center">
+      <Grid
+        container
+        item
+        spacing={0}
+        alignItems="center"
+        sx={{ borderBottom: '1px solid #aeaeae', mt: 0.5 }}
+      >
         <Grid item display={{ xs: 'none', sm: 'block' }} sm={2}>
           <Box
             component="img"
-            src={product.image}
-            alt={product.title}
+            src={image}
+            alt={title}
             sx={{ maxHeight: '100px' }}
           />
         </Grid>
@@ -26,7 +32,7 @@ const CartItem = (props: Props) => {
             component="p"
             sx={{ fontSize: { xs: '0.7rem', md: '1rem' } }}
           >
-            {product.title}
+            {title}
           </Typography>
         </Grid>
         <Grid item xs={3} sm={2}>
@@ -34,7 +40,7 @@ const CartItem = (props: Props) => {
             component="p"
             sx={{ fontSize: { xs: '0.7rem', md: '1rem' } }}
           >
-            {product.price}$
+            {price.toFixed(2)}$
           </Typography>
         </Grid>
         <Grid item xs={1}>
@@ -52,11 +58,14 @@ const CartItem = (props: Props) => {
           display="flex"
           sx={{ flexFlow: 'column', alignItems: 'center' }}
         >
-          <KeyboardArrowUpIcon color="primary" />
-          <KeyboardArrowDownIcon color="primary" />
+          <Button onClick={() => dispatch(changeAmount({ id, type: 'inc' }))}>
+            <KeyboardArrowUpIcon color="primary" />
+          </Button>
+          <Button onClick={() => dispatch(changeAmount({ id, type: 'dec' }))}>
+            <KeyboardArrowDownIcon color="primary" />
+          </Button>
         </Grid>
       </Grid>
-      <Divider sx={{ pt: 1 }} />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@emotion/react';
+import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Cart from './pages/Cart';
@@ -8,9 +9,18 @@ import Home from './pages/Home';
 import Order from './pages/Order';
 import Products from './pages/Products';
 import SingleProduct from './pages/SingleProduct';
+import { calculateTotals } from './shared/features/cart/cartSlice';
 import { theme } from './shared/mui-themes/themes';
+import { useAppDispatch, useAppSelector } from './shared/utils/hooks';
 
 const App = () => {
+  const { cartItems } = useAppSelector((store) => store.cart);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(calculateTotals());
+  }, [cartItems]);
+
   return (
     <>
       <ThemeProvider theme={theme}>

@@ -7,6 +7,7 @@ import { getSingleProduct } from '../shared/features/singleProduct/singleProduct
 import { useAppDispatch, useAppSelector } from '../shared/utils/hooks';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Footer from '../components/common/Footer';
+import { addItem } from '../shared/features/cart/cartSlice';
 
 const SingleProduct = () => {
   const productId = useParams().id;
@@ -18,7 +19,6 @@ const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
-    console.log('test');
   }, [dispatch, productId]);
 
   if (isLoading) {
@@ -56,7 +56,7 @@ const SingleProduct = () => {
           width={{ xs: '90%', md: '80%' }}
           mx="auto"
         >
-          <Grid xs={6} sm={4} item justifyContent="center">
+          <Grid item xs={6} sm={4} justifyContent="center">
             <Box
               component="img"
               src={image}
@@ -76,6 +76,7 @@ const SingleProduct = () => {
           >
             <Grid
               container
+              item
               xs={12}
               justifyContent={{ xs: 'center', sm: 'start' }}
             >
@@ -89,7 +90,7 @@ const SingleProduct = () => {
                 {title}
               </Typography>
             </Grid>
-            <Grid xs={12} container justifyContent="center">
+            <Grid item xs={12} container justifyContent="center">
               <Rating name="rating" value={rating.rate} precision={0.5} />
               <Typography
                 sx={{
@@ -113,7 +114,7 @@ const SingleProduct = () => {
                 {description}
               </Typography>
             </Grid>
-            <Grid xs={12} justifyContent="center">
+            <Grid item xs={12} justifyContent="center">
               <Typography
                 sx={{
                   typography: { xs: 'h6', md: 'h5' },
@@ -125,8 +126,12 @@ const SingleProduct = () => {
               </Typography>
             </Grid>
 
-            <Grid xs={12} container justifyContent="center" my={3}>
-              <Button color="primary" variant="outlined">
+            <Grid xs={12} container item justifyContent="center" my={3}>
+              <Button
+                color="primary"
+                variant="outlined"
+                onClick={() => dispatch(addItem(singleProduct))}
+              >
                 Add to cart
               </Button>
             </Grid>
