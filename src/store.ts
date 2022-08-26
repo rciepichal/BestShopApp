@@ -3,6 +3,7 @@ import allProductsReducer from './shared/features/allProducts/allProductsSlice';
 import topPickReducer from './shared/features/topPick/topPickSlice';
 import newestProductsReducer from './shared/features/newestProducts/newestProductsSlice';
 import singleProductReducer from './shared/features/singleProduct/singleProductSlice';
+import cartSlice from './shared/features/cart/cartSlice';
 
 export let store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export let store = configureStore({
     topPick: topPickReducer,
     newestProducts: newestProductsReducer,
     singleProduct: singleProductReducer,
+    cart: cartSlice,
   },
 });
 

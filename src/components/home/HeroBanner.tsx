@@ -56,7 +56,10 @@ const HeroBanner = (props: Props) => {
               variant="h3"
               color="inherit"
               gutterBottom
-              sx={{ textShadow: '3px 3px 0px rgba(255, 0, 0, 0.5)' }}
+              sx={{
+                textShadow: '3px 3px 0px rgba(255, 0, 0, 0.5)',
+                typography: { xs: 'h4', md: 'h2' },
+              }}
             >
               Welcome to BestShop!
             </Typography>

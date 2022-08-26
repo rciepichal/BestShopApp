@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { getNewestProducts } from '../../shared/features/newestProducts/newestProductsSlice';
 import { useAppDispatch, useAppSelector } from '../../shared/utils/hooks';
 import { Product } from '../../shared/models';
-import SingleProductTile from './SingleProductTile';
+import SingleProductTile from '../common/SingleProductTile';
 
 type Props = {};
 

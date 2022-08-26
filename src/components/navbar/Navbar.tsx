@@ -15,10 +15,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './navbar.scss';
 import { useState } from 'react';
+import { useAppSelector } from '../../shared/utils/hooks';
 
 const pages = ['Home', 'Products', 'Contact'];
 
 const ResponsiveAppBar = () => {
+  const { totalAmount } = useAppSelector((store) => store.cart);
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const { pathname } = useLocation();
 
@@ -34,27 +37,15 @@ const ResponsiveAppBar = () => {
     <AppBar position="sticky" sx={{ backgroundColor: '#fff' }}>
       <Container maxWidth="xl">
         <Toolbar>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
+          <Box
             sx={{
-              mr: 2,
               display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'primary',
-              textDecoration: 'none',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%',
             }}
           >
-            BestShop
-          </Typography>
-
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
             <IconButton
               size="large"
               aria-controls="mobile-menu"
@@ -101,7 +92,7 @@ const ResponsiveAppBar = () => {
                     <NavLink
                       key={page}
                       onClick={handleCloseNavMenu}
-                      to={`${page === 'Home' ? '/' : page}`}
+                      to={`${(page === 'Home' ? '/' : page).toLowerCase()}`}
                       className={({ isActive }) =>
                         isActive
                           ? 'nav-link-mobile active-mobile'
@@ -154,7 +145,7 @@ const ResponsiveAppBar = () => {
                 <NavLink
                   key={page}
                   onClick={handleCloseNavMenu}
-                  to={`${page === 'Home' ? '/' : page}`}
+                  to={`${(page === 'Home' ? '/' : page).toLowerCase()}`}
                   className={({ isActive }) =>
                     isActive ? 'nav-link active' : 'nav-link'
                   }
@@ -171,11 +162,11 @@ const ResponsiveAppBar = () => {
                 }
               >
                 {pathname === '/cart' ? (
-                  <Badge badgeContent={0} color="primary" showZero>
+                  <Badge badgeContent={totalAmount} color="primary" showZero>
                     <ShoppingCartIcon sx={{ fontSize: '2rem' }} />
                   </Badge>
                 ) : (
-                  <Badge badgeContent={0} color="secondary" showZero>
+                  <Badge badgeContent={totalAmount} color="secondary" showZero>
                     <ShoppingCartIcon sx={{ fontSize: '2rem' }} />
                   </Badge>
                 )}
