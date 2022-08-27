@@ -7,6 +7,7 @@ import {
   Badge,
   Box,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { Product } from '../../shared/models';
 import CategoryBadge from '../products/CategoryBadge';
 
@@ -62,77 +63,81 @@ const SingleProductTile = ({ product, isOnSale, isProductPage }: Props) => {
         ></Box>
 
         <CardActionArea
-          href={`/products/${id}`}
           sx={{
             height: `${isProductPage ? '18rem' : ''}`,
             display: 'flex',
             flexFlow: 'column nowrap',
           }}
         >
-          <CardMedia
-            component="img"
-            height="130"
-            image={image}
-            alt={title}
-            sx={{
-              objectFit: 'contain',
-              paddingTop: 2,
-            }}
-          ></CardMedia>
-
-          <CardContent>
-            <Box
+          <Link
+            to={`/products/${id}`}
+            style={{ textDecoration: 'none', color: 'black' }}
+          >
+            <CardMedia
+              component="img"
+              height="130"
+              image={image}
+              alt={title}
               sx={{
-                display: 'flex',
-                flexFlow: 'column nowrap',
-                justifyContent: 'center',
+                objectFit: 'contain',
+                paddingTop: 2,
               }}
-            >
-              {isProductPage && (
-                <CategoryBadge category={category}></CategoryBadge>
-              )}
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="h6"
+            ></CardMedia>
+
+            <CardContent>
+              <Box
                 sx={{
-                  textAlign: 'center',
-                  fontSize: { xs: '1rem', lg: '1.1rem' },
+                  display: 'flex',
+                  flexFlow: 'column nowrap',
+                  justifyContent: 'center',
                 }}
               >
-                {title.length < 50 ? title : `${title.substring(0, 65)}...`}
-              </Typography>
-            </Box>
-            {isProductPage &&
-              (isOnSale ? (
-                <Box sx={{ textAlign: 'center' }}>
+                {isProductPage && (
+                  <CategoryBadge category={category}></CategoryBadge>
+                )}
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="h6"
+                  sx={{
+                    textAlign: 'center',
+                    fontSize: { xs: '1rem', lg: '1.1rem' },
+                  }}
+                >
+                  {title.length < 50 ? title : `${title.substring(0, 65)}...`}
+                </Typography>
+              </Box>
+              {isProductPage &&
+                (isOnSale ? (
+                  <Box sx={{ textAlign: 'center' }}>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      component="span"
+                      sx={{ textDecoration: 'line-through' }}
+                    >
+                      {price.toFixed(2)}$
+                    </Typography>
+                    <Typography
+                      component="span"
+                      variant="body1"
+                      color="primary"
+                      sx={{ pl: 1 }}
+                    >
+                      {(price * 0.88).toFixed(2)}$
+                    </Typography>
+                  </Box>
+                ) : (
                   <Typography
                     variant="body1"
                     color="text.secondary"
-                    component="span"
-                    sx={{ textDecoration: 'line-through' }}
+                    sx={{ textAlign: 'center' }}
                   >
-                    {price.toFixed(2)}$
+                    {price.toFixed(2)} $
                   </Typography>
-                  <Typography
-                    component="span"
-                    variant="body1"
-                    color="primary"
-                    sx={{ pl: 1 }}
-                  >
-                    {(price * 0.88).toFixed(2)}$
-                  </Typography>
-                </Box>
-              ) : (
-                <Typography
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ textAlign: 'center' }}
-                >
-                  {price.toFixed(2)} $
-                </Typography>
-              ))}
-          </CardContent>
+                ))}
+            </CardContent>
+          </Link>
         </CardActionArea>
       </Card>
     </Box>
